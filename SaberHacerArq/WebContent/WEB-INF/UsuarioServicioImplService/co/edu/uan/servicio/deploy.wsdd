@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UsuarioServicioImplService WSDL service -->
+
+  <service name="UsuarioServicioImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://servicio.uan.edu.co"/>
+      <parameter name="wsdlServiceElement" value="UsuarioServicioImplService"/>
+      <parameter name="schemaQualified" value="http://servicio.uan.edu.co,http://modelo.usuarios.uan.edu.co"/>
+      <parameter name="wsdlServicePort" value="UsuarioServicioImpl"/>
+      <parameter name="className" value="co.edu.uan.servicio.UsuarioServicioImpl"/>
+      <parameter name="wsdlPortType" value="UsuarioServicioImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://servicio.uan.edu.co" xmlns:retNS="http://servicio.uan.edu.co" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="agregarUsuario" qname="operNS:agregarUsuario" returnQName="retNS:agregarUsuarioReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://servicio.uan.edu.co" xmlns:tns="http://modelo.usuarios.uan.edu.co" qname="pns:user" type="tns:Usuario"/>
+      </operation>
+      <operation xmlns:operNS="http://servicio.uan.edu.co" xmlns:retNS="http://servicio.uan.edu.co" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="borrarUsuario" qname="operNS:borrarUsuario" returnQName="retNS:borrarUsuarioReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://servicio.uan.edu.co" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:long"/>
+      </operation>
+      <operation xmlns:operNS="http://servicio.uan.edu.co" xmlns:retNS="http://servicio.uan.edu.co" xmlns:rtns="http://modelo.usuarios.uan.edu.co" name="obtenerUsuario" qname="operNS:obtenerUsuario" returnQName="retNS:obtenerUsuarioReturn" returnType="rtns:Usuario" soapAction="">
+        <parameter xmlns:pns="http://servicio.uan.edu.co" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:long"/>
+      </operation>
+      <parameter name="allowedMethods" value="obtenerUsuario agregarUsuario borrarUsuario"/>
+
+      <typeMapping xmlns:ns="http://modelo.usuarios.uan.edu.co" qname="ns:Usuario" type="java:co.edu.uan.usuarios.modelo.Usuario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

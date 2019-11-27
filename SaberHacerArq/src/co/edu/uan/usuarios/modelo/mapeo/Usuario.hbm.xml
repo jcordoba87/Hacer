@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="co.edu.uan.usuarios.modelo.Usuario" table="usuario">
+
+<id name="id" type="int">
+<column name="Id" />
+<generator class="identity" />
+</id>
+
+<property name="nombre" type="string">
+<column name="Nombre" length="500" />
+</property>
+
+<property name="apellido" type="string">
+<column name="Apellido" length="500" />
+</property>
+
+<property name="telefono" type="int">
+<column name="Telefono" length="500" />
+</property>
+
+<property name="sexo" type="string">
+<column name="Sexo" length="500" />
+</property>
+
+<property name="estadocivil" type="string">
+<column name="Estado_civil" length="500" />
+</property>
+</class>
+</hibernate-mapping>
